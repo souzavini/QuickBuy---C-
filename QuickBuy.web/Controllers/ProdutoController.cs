@@ -30,6 +30,7 @@ namespace QuickBuy.web.Controllers
             }
         }
 
+
         [HttpPost]
         public IActionResult Post([FromBody]Produto produto)
         {
