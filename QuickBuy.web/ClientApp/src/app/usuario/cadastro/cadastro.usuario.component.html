@@ -1,9 +1,10 @@
 <div class="text-center">
     <form class="form-signin">
-        <h1 class="h4 mb-2 login">Login do Cliente</h1>
+        <h1 class="h4 mb-2 login">Criar conta</h1>
+
         <label for="inputEmail" class="sr-only"></label>
         <input type="email" id="inputEmail" name="email" 
-        placeholder="Informe seu E-mail" 
+        placeholder="E-mail" 
         class="form-control mb-2" 
         [ngClass]="{
             'is-invalid': email.invalid && (email.dirty || email.touched),
@@ -13,13 +14,46 @@
         #email="ngModel" 
         email
         required/>
-
         <div class="invalid-feedback mb-2" *ngIf="email.invalid && (email.dirty || email.touched)">
             <div *ngIf= "email.errors.required">
                 Email é de preenchimento obrigatorio.
             </div>
             <div *ngIf= "email.errors.email">
                 Email não está no formato correto.
+            </div>
+        </div>
+
+        <label for="inputNome" class="sr-only">Nome</label>
+        <input type="text" id="inputNome" name="nome" 
+        placeholder="Nome" 
+        class="form-control mb-2" 
+        [ngClass]="{
+            'is-invalid': nome.invalid && (nome.dirty || nome.touched),
+            'is-valid': nome.valid && (nome.dirty || nome.touched)
+        }"
+        [(ngModel)]="usuario.nome" 
+        #nome="ngModel" 
+        required/>
+        <div class="invalid-feedback mb-2" *ngIf="nome.invalid && (nome.dirty || nome.touched)">
+            <div *ngIf= "nome.errors.required">
+                Nome é de preenchimento obrigatorio.
+            </div>
+        </div>
+
+        <label for="inputsobreNome" class="sr-only"></label>
+        <input type="text" id="inputsobreNome" name="sobreNome" 
+        placeholder="sobreNome" 
+        class="form-control mb-2" 
+        [ngClass]="{
+            'is-invalid': sobreNome.invalid && (sobreNome.dirty || sobreNome.touched),
+            'is-valid': sobreNome.valid && (sobreNome.dirty || sobreNome.touched)
+        }"
+        [(ngModel)]="usuario.sobreNome" 
+        #sobreNome="ngModel" 
+        required/>
+        <div class="invalid-feedback mb-2" *ngIf="sobreNome.invalid && (sobreNome.dirty || sobreNome.touched)">
+            <div *ngIf= "sobreNome.errors.required">
+                sobreNome é de preenchimento obrigatorio.
             </div>
         </div>
 
@@ -41,11 +75,12 @@
             </div>
 
         </div>
-        <button class="btn btn-primary btn-block" type="submit" (click)="entrar()" [disabled]="ativar_spinner"> 
+        <button class="btn btn-primary btn-block" type="submit" (click)="cadastrar()" [disabled]="ativar_spinner"> 
         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="ativar_spinner"></span>
-            Entrar
+            Cadastrar
         </button>
-        <div>Novo por aqui? <a [routerLink]='["/novo-usuario"]'>Cadastre-se</a></div>
+        <a [routerLink]='["/entrar"]' class="btn btn-danger btn-block"  >Voltar</a>
+        
         
         <div class="alert alert-danger" *ngIf="mensagem">
                 {{ mensagem }} 
